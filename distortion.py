@@ -11,7 +11,10 @@ class Distortion:
     N_fields = 0
     x_eqn = ''
     y_eqn = ''
-    N_stars = []
+
+    N_stars = 0.
+    N_stars_err = 0.
+    N_stars_arr = []
 
     x_const = 0.
     x_const_err = 0.
@@ -86,7 +89,10 @@ class Distortion:
         self.N_fields = 0
         self.x_eqn = ''
         self.y_eqn = ''
-        self.N_stars = []
+
+        self.N_stars = 0.
+        self.N_stars_err = 0.
+        self.N_stars_arr = []
 
         self.x_const = 0.
         self.x_const_err = 0.
@@ -220,7 +226,7 @@ class Distortion:
                         if "Astrometry" in all_lines[i+j]:
                             offset = j+1
                     ## grab the number of stars used
-                    self.N_stars.append(int(all_lines[i+offset].split()[0]))
+                    self.N_stars_arr.append(int(all_lines[i+offset].split()[0]))
 
                     ## information for the X solution
                     self.x_eqn = all_lines[i+offset+1]+all_lines[i+offset+2]+all_lines[i+offset+3]
@@ -245,6 +251,8 @@ class Distortion:
                         print(self.y_const,self.y_xp,self.y_yp,self.y_xp2,self.y_xpyp,self.y_yp2,self.y_xp3,self.y_xp2yp,self.y_xpyp2,self.y_yp3)
 
         ## calculate the average and stdev values
+        self.N_stars = statistics.mean(self.N_stars_arr)
+
         self.x_const = statistics.mean(self.x_const_arr)
         self.x_xp = statistics.mean(self.x_xp_arr)
         self.x_yp = statistics.mean(self.x_yp_arr)
@@ -267,7 +275,9 @@ class Distortion:
         self.y_xpyp2 = statistics.mean(self.y_xpyp2_arr)
         self.y_yp3 = statistics.mean(self.y_yp3_arr)
 
-        if(len(self.N_stars) > 1):
+        if(len(self.N_stars_arr) > 1):
+            self.N_stars_err = statistics.stdev(self.N_stars_arr)
+
             self.x_const_err = statistics.stdev(self.x_const_arr)
             self.x_xp_err = statistics.stdev(self.x_xp_arr)
             self.x_yp_err = statistics.stdev(self.x_yp_arr)
@@ -294,5 +304,5 @@ class Distortion:
         openType = 'a' if append else 'w'
         with open(fname,openType) as f:
             if(not append):
-                f.write('desc,x_const,x_const_err,x_xp,x_xp_err,x_yp,x_yp_err,x_xp2,x_xp2_err,x_xpyp,x_xpyp_err,x_yp2,x_yp2_err,x_xp3,x_xp3_err,x_xp2yp,x_xp2yp_err,x_xpyp2,x_xpyp2_err,x_yp3,x_yp3_err,y_const,y_const_err,y_xp,y_xp_err,y_yp,y_yp_err,y_xp2,y_xp2_err,y_xpyp,y_xpyp_err,y_yp2,y_yp2_err,y_xp3,y_xp3_err,y_xp2yp,y_xp2yp_err,y_xpyp2,y_xpyp2_err,y_yp3,y_yp3_err\n')
-            f.write('%s,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e\n'%(desc,self.x_const,self.x_const_err,self.x_xp,self.x_xp_err,self.x_yp,self.x_yp_err,self.x_xp2,self.x_xp2_err,self.x_xpyp,self.x_xpyp_err,self.x_yp2,self.x_yp2_err,self.x_xp3,self.x_xp3_err,self.x_xp2yp,self.x_xp2yp_err,self.x_xpyp2,self.x_xpyp2_err,self.x_yp3,self.x_yp3_err,self.y_const,self.y_const_err,self.y_xp,self.y_xp_err,self.y_yp,self.y_yp_err,self.y_xp2,self.y_xp2_err,self.y_xpyp,self.y_xpyp_err,self.y_yp2,self.y_yp2_err,self.y_xp3,self.y_xp3_err,self.y_xp2yp,self.y_xp2yp_err,self.y_xpyp2,self.y_xpyp2_err,self.y_yp3,self.y_yp3_err))
+                f.write('desc,N_stars,N_stars_err,x_const,x_const_err,x_xp,x_xp_err,x_yp,x_yp_err,x_xp2,x_xp2_err,x_xpyp,x_xpyp_err,x_yp2,x_yp2_err,x_xp3,x_xp3_err,x_xp2yp,x_xp2yp_err,x_xpyp2,x_xpyp2_err,x_yp3,x_yp3_err,y_const,y_const_err,y_xp,y_xp_err,y_yp,y_yp_err,y_xp2,y_xp2_err,y_xpyp,y_xpyp_err,y_yp2,y_yp2_err,y_xp3,y_xp3_err,y_xp2yp,y_xp2yp_err,y_xpyp2,y_xpyp2_err,y_yp3,y_yp3_err\n')
+            f.write('%s,%6.1f,%6.1f,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e,%13.6e\n'%(desc,self.N_stars,self.N_stars_err,self.x_const,self.x_const_err,self.x_xp,self.x_xp_err,self.x_yp,self.x_yp_err,self.x_xp2,self.x_xp2_err,self.x_xpyp,self.x_xpyp_err,self.x_yp2,self.x_yp2_err,self.x_xp3,self.x_xp3_err,self.x_xp2yp,self.x_xp2yp_err,self.x_xpyp2,self.x_xpyp2_err,self.x_yp3,self.x_yp3_err,self.y_const,self.y_const_err,self.y_xp,self.y_xp_err,self.y_yp,self.y_yp_err,self.y_xp2,self.y_xp2_err,self.y_xpyp,self.y_xpyp_err,self.y_yp2,self.y_yp2_err,self.y_xp3,self.y_xp3_err,self.y_xp2yp,self.y_xp2yp_err,self.y_xpyp2,self.y_xpyp2_err,self.y_yp3,self.y_yp3_err))
