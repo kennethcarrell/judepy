@@ -1,0 +1,43 @@
+1984, 700
+232, 402
+1004, 344
+1670, 414
+1113, 355
+2250, 21
+0.321930599,  
+0.371886276,  
+0.377002475,  
+-6.61547E-09,  
+-1.71347E-08,  
+-6.65531E-09,  
+-3.22977E-11,  
+-3.41267E-11,  
+-3.33765E-11,  
+-2.97937E-11,  
+-0.214682339,  
+0.377026359,  
+-0.371942987,  
+-8.68796E-09,  
+-1.95681E-09,  
+2.87535E-09,  
+-3.20954E-11,  
+3.46164E-11,  
+-3.54422E-11,  
+3.1314E-11,  
+
+"""
+
+image width, image height
+
+star1(X,Y)
+
+star2(X,Y)
+
+star3(X,Y)
+
+Jupiter(X,Y)
+
+number of image files to read, Box diameter (odd)
+
+10 Astrometrica coefficients for X, <two spaces>
+10 Astrometrica coefficients for Y, <two spaces> 
