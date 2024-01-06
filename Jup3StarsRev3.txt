@@ -39,5 +39,26 @@ Jupiter(X,Y)
 
 number of image files to read, Box diameter (odd)
 
-10 Astrometrica coefficients for X, <two spaces>
-10 Astrometrica coefficients for Y, <two spaces> 
+0th-degree Astrometrica coefficient for X,  
+x coefficient for X,  
+y coefficient for X,  
+x**2 coefficient for X,  
+x * y coefficient for X,  
+y**2 coefficient for X,  
+x**3 coefficient for X,  
+x**2 * y coefficient for X,  
+x * y**2 coefficient for X,  
+y**3 coefficient for X,  
+
+0th-degree Astrometrica coefficient for Y,  
+x coefficient for Y,  
+y coefficient for Y,  
+x**2 coefficient for Y,  
+x * y coefficient for Y,  
+y**2 coefficient for Y,  
+x**3 coefficient for Y,  
+x**2 * y coefficient for Y,  
+x * y**2 coefficient for Y,  
+y**3 coefficient for Y,  
+
+Note the comma "," followed by two whitespaces after each coefficient!
