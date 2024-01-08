@@ -1,0 +1,64 @@
+1984, 700
+232, 402
+1004, 344
+1670, 414
+1113, 355
+2250, 21
+0.321930599,  
+0.371886276,  
+0.377002475,  
+-6.61547E-09,  
+-1.71347E-08,  
+-6.65531E-09,  
+-3.22977E-11,  
+-3.41267E-11,  
+-3.33765E-11,  
+-2.97937E-11,  
+-0.214682339,  
+0.377026359,  
+-0.371942987,  
+-8.68796E-09,  
+-1.95681E-09,  
+2.87535E-09,  
+-3.20954E-11,  
+3.46164E-11,  
+-3.54422E-11,  
+3.1314E-11,  
+
+"""
+
+image width, image height
+
+star1(X,Y)
+
+star2(X,Y)
+
+star3(X,Y)
+
+Jupiter(X,Y)
+
+number of image files to read, Box diameter (odd)
+
+0th-degree Astrometrica coefficient for X,  
+x coefficient for X,  
+y coefficient for X,  
+x**2 coefficient for X,  
+x * y coefficient for X,  
+y**2 coefficient for X,  
+x**3 coefficient for X,  
+x**2 * y coefficient for X,  
+x * y**2 coefficient for X,  
+y**3 coefficient for X,  
+
+0th-degree Astrometrica coefficient for Y,  
+x coefficient for Y,  
+y coefficient for Y,  
+x**2 coefficient for Y,  
+x * y coefficient for Y,  
+y**2 coefficient for Y,  
+x**3 coefficient for Y,  
+x**2 * y coefficient for Y,  
+x * y**2 coefficient for Y,  
+y**3 coefficient for Y,  
+
+Note the comma "," followed by two whitespaces after each coefficient!
